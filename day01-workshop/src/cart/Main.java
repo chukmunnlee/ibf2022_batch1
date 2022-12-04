@@ -43,6 +43,8 @@ public class Main {
 
                 case "delete":
                     // delete has any number and if the number is valid
+                    Integer index = Integer.parseInt(terms[1]);
+                    cart.remove((int)index);
                     break;
 
                 case "exit":
