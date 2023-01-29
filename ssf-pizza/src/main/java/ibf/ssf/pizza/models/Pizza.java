@@ -2,6 +2,7 @@ package ibf.ssf.pizza.models;
 
 import java.io.Serializable;
 
+import jakarta.json.JsonObject;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -32,5 +33,13 @@ public class Pizza implements Serializable {
 	@Override
 	public String toString() {
 		return "Pizza{pizza=%s, size=%s, quantity=%d}".formatted(pizza, size, quantity);
+	}
+
+	public static Pizza create(JsonObject json) {
+		Pizza pizza = new Pizza();
+		pizza.setPizza(json.getString("pizza"));
+		pizza.setSize(json.getString("size"));
+		pizza.setQuantity(json.getInt("quantity"));
+		return pizza;
 	}
 }

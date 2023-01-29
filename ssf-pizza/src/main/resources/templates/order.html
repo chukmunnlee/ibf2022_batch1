@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Order</title>
+	</head>
+	<body>
+
+		<h1>Delivery Details</h1>
+
+		<table>
+			<tr>
+				<td>Order Number:</td>
+				<td>
+					<a data-th-href="@{/order/{orderId}(orderId=${order.orderId})}">
+						<code data-th-text="${order.orderId}"></code>
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Your order will be delivered to:</td>
+				<td><span data-th-text="${order.address}"></span></td>
+			</tr>
+			<tr>
+				<td>Pizza cost:</td>
+				<td><span data-th-text="${order.pizzaCost}"></span></td>
+			</tr>
+			<tr data-th-if="order.rush">
+				<td>Rush:</td>
+				<td>$2</td>
+			</tr>
+			<tr>
+				<td>Total cost:</td>
+				<td><span data-th-text="${order.totalCost}"></span></td>
+			</tr>
+		</table>
+		
+	</body>
+</html>

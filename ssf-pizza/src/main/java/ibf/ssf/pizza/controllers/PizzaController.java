@@ -11,10 +11,13 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ibf.ssf.pizza.models.Pizza;
-import ibf.ssf.pizza.services.PizzaService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+
+import ibf.ssf.pizza.models.Pizza;
+import ibf.ssf.pizza.models.Delivery;
+import ibf.ssf.pizza.models.Order;
+import ibf.ssf.pizza.services.PizzaService;
 
 @Controller
 public class PizzaController {
@@ -50,6 +53,28 @@ public class PizzaController {
 
 		sess.setAttribute("pizza", pizza);
 
-		return "index";
+		model.addAttribute("delivery", new Delivery());
+
+		return "delivery";
+	}
+
+	@PostMapping(path="/pizza/order")
+	public String postPizzaOrder(Model model, HttpSession sess
+				, @Valid Delivery delivery, BindingResult bindings) {
+
+		logger.info("POST /pizza/order: %s".formatted(delivery.toString()));
+
+		if (bindings.hasErrors())
+			return "delivery";
+
+		Pizza pizza = (Pizza)sess.getAttribute("pizza");
+
+		Order order = pizzaSvc.savePizzaOrder(pizza, delivery);
+
+		logger.info("%s".formatted(order));
+
+		model.addAttribute("order", order);
+
+		return "order";
 	}
 }
