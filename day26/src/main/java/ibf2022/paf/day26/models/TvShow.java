@@ -1,6 +1,7 @@
 package ibf2022.paf.day26.models;
 
 import org.bson.Document;
+import org.springframework.data.mapping.TraversalContext;
 
 import static ibf2022.paf.day26.Constants.*;
 
@@ -36,7 +37,11 @@ public class TvShow {
         tvShow.setId(doc.getInteger(FIELD_ID));
         tvShow.setName(doc.getString(FIELD_NAME));
 		  Document d = (Document)doc.get(FIELD_RATING);
-		  tvShow.setRating(d.getDouble(FIELD_AVERAGE).floatValue());
+		  try {
+			  tvShow.setRating(d.getDouble(FIELD_AVERAGE).floatValue());
+			} catch (Exception ex) {
+				tvShow.setRating(d.getInteger(FIELD_AVERAGE).floatValue());
+			}
         return tvShow;
     }
 
