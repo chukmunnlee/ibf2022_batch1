@@ -37,7 +37,7 @@ public class TvShowsRepository {
 			 	.regex(type, "i");
 
 		Query query = Query.query(criteria)
-			 .with(Sort.by(Direction.DESC, FIELD_RATING_AVERAGE))
+			 .with(Sort.by(Direction.ASC, FIELD_RATING_AVERAGE))
 			 .limit(limit)
 			 .skip(skip);
 

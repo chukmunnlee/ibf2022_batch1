@@ -38,10 +38,13 @@ public class TvShow {
         tvShow.setName(doc.getString(FIELD_NAME));
 		  Document d = (Document)doc.get(FIELD_RATING);
 		  try {
-			  tvShow.setRating(d.getDouble(FIELD_AVERAGE).floatValue());
+			  if (d.getDouble(FIELD_ID) != null)
+				  tvShow.setRating(d.getDouble(FIELD_AVERAGE).floatValue());
+			  else
+				  tvShow.setRating(Float.NaN);
 			} catch (Exception ex) {
 				tvShow.setRating(d.getInteger(FIELD_AVERAGE).floatValue());
-			}
+			} 
         return tvShow;
     }
 
