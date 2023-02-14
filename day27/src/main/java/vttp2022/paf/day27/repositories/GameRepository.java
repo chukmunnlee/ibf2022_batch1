@@ -1,6 +1,7 @@
 package vttp2022.paf.day27.repositories;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,16 @@ public class GameRepository {
 
 	@Autowired
 	private JdbcTemplate template;
+
+	public Optional<Game> getGameByGameId(int gameId) {
+
+		SqlRowSet rs = template.queryForRowSet(SQL_SELECT_GAME_BY_GID, gameId);
+
+		if (!rs.next())
+			return Optional.empty();
+
+		return Optional.of(Game.create(rs));
+	}
 
 	// gid, name
 	public List<Game> getGames() {
