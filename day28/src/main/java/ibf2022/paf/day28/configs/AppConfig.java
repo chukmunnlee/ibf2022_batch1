@@ -16,9 +16,15 @@ public class AppConfig {
 	@Value("${mongo.url}")
 	private String mongoUrl;
 
-	@Bean
-	public MongoTemplate createTemplate() {
+	//@Bean(BGG)
+	public MongoTemplate createBGG() {
 		MongoClient client = MongoClients.create(mongoUrl);
 		return new MongoTemplate(client, BGG);
+	}
+
+	@Bean(NETFLIX)
+	public MongoTemplate createNetflix() {
+		MongoClient client = MongoClients.create(mongoUrl);
+		return new MongoTemplate(client, NETFLIX);
 	}
 }
