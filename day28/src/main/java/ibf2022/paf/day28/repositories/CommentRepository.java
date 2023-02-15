@@ -28,8 +28,10 @@ public class CommentRepository {
 				.matchingAny(texts);
 
 		TextQuery textQuery = TextQuery.queryText(criteria)
+				.includeScore(FIELD_TEXT_SCORE)
 				.sortByScore();
-		textQuery.setScoreFieldName(FIELD_TEXT_SCORE);
+
+		//textQuery.setScoreFieldName(FIELD_TEXT_SCORE);
 
 		Query  query = textQuery.limit(3);
 
