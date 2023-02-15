@@ -16,7 +16,8 @@ import static ibf2022.paf.day28.Constants.*;
 @Repository
 public class CommentRepository {
 
-	//@Autowired @Qualifier(BGG)
+	@Autowired 
+	@Qualifier(BGG)
 	private MongoTemplate template;
 
 	/*

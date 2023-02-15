@@ -95,6 +95,5 @@ public class TvShowRepository {
 
 		return template.aggregate(pipeline, COLLECTION_TVSHOWS, Document.class)
 				.getMappedResults();
-
 	}
 }
