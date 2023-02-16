@@ -33,7 +33,7 @@ export class MainComponent implements OnInit {
 		this.orderSvc.placeOrder(order)
 			.then(result => {
 				alert(`Your order has been placed. Order id is ${result.orderId}`)
-				this.createForm()
+				this.form = this.createForm()
 			})
 			.catch(error => {
 				console.error(error)
