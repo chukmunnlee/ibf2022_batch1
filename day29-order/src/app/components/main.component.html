@@ -1,0 +1,56 @@
+
+<h2>Order</h2>
+
+<form [formGroup]="form" (ngSubmit)="processForm()">
+	<table>
+		<tr>
+			<td>Name: </td>
+			<td>
+				<input type="text" size="30" placeholder="Your name" formControlName="name">
+			</td>
+		</tr>
+		<tr>
+			<td>Email: </td>
+			<td>
+				<input type="email" size="30" placeholder="Your email" formControlName="email">
+			</td>
+		</tr>
+		<tr>
+			<td>Delivery Date: </td>
+			<td>
+				<input type="date" size="30" formControlName="deliveryDate">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<button type="submit">Place Order</button>
+				<button type="button" (click)="addItem()">Add Item</button>
+			</td>
+		</tr>
+	</table>
+
+	<h2 *ngIf="lineItems.length <= 0">
+		Your cart is empty
+	</h2>
+
+	<table border="1" *ngIf="lineItems.length > 0" style="margin-top: 2vh">
+		<thead>
+			<tr>
+				<th>Item</th>
+				<th>Quantity</th>
+			</tr>
+		</thead>
+		<tbody formArrayName="lineItems">
+			<tr *ngFor="let i of lineItems.controls; let idx = index" [formGroupName]="idx">
+				<td>
+					<input type="text" size="20" placeholder="Item name" formControlName="item">
+				</td>
+				<td>
+					<input type="number" placeholder="Quantity" formControlName="quantity">
+				</td>
+				<td><button type="button" (click)="removeItem(idx)">X</button></td>
+			</tr>
+		</tbody>
+	</table>
+</form>

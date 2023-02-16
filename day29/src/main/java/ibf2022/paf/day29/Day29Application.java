@@ -1,5 +1,8 @@
 package ibf2022.paf.day29;
 
+import java.util.List;
+
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,6 +22,11 @@ public class Day29Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
+		//List<Document> results = tvshowSvc.countGenres();
+		List<Document> results = tvshowSvc.histogramOfRatings();
+
+		for (Document d: results)
+			System.out.printf(">>> %s\n", d.toJson());
 	}
 
 }
