@@ -1,0 +1,13 @@
+
+
+<div *ngIf="numImages.length <= 0">
+  <h2>No numbers to display</h2>
+</div>
+
+<div *ngIf="numImages.length > 0">
+  <h1>List of Numbers</h1>
+  <div *ngFor="let i of numImages">
+    <img src="/assets/numbers/number{{ i.num }}.jpg" height="100px;">
+    <code>{{ i.text | lowercase }}</code>
+  </div>
+</div>

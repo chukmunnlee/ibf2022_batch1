@@ -1,0 +1,13 @@
+h1 {
+  color: pink;
+}
+
+h1:hover {
+  color: red;
+}
+
+.box-it {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid black
+}
