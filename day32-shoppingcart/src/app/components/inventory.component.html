@@ -1,0 +1,46 @@
+<h2>Inventories</h2>
+
+<form [formGroup]="form" (ngSubmit)="addToCart()">
+	<table>
+		<tr *ngFor="let i of inventories" (click)="selectItem(i.name)">
+			<td> 
+				<img src="/assets/fruits/{{i.image}}" class="thumbnail">
+			</td>
+			<td>
+				<span class="text">
+					{{ i.name | uppercase }}
+					({{ i.unitPrice | currency }})
+				</span>
+			</td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<td>Item: </td>
+			<td>
+				<input type="text" readonly formControlName="item">
+			</td>
+		</tr>
+		<tr>
+			<td>Unit Price: $</td>
+			<td>
+				<input type="number" readonly formControlName="unitPrice">
+			</td>
+		</tr>
+		<tr>
+			<td>Quantity: </td>
+			<td>
+				<input type="number" min="1" formControlName="quantity">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<button type="submit" [disabled]="form.invalid">
+					Add to Cart
+				</button>
+			</td>
+		</tr>
+	</table>
+</form>
