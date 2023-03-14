@@ -26,6 +26,10 @@
     </tr>
   </table>
 
+  <div>
+    {{ abc | async | json }}
+  </div>
+
   <div *ngIf="taskArray.controls.length <= 0">
     <h2>You are free</h2>
   </div>
