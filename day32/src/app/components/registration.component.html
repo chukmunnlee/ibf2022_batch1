@@ -1,0 +1,63 @@
+<form [formGroup]="regForm" (ngSubmit)="processForm()">
+  <table>
+    <tr>
+      <td>Name:</td>
+      <td>
+        <input type="text" size="30" formControlName="name">
+        <div *ngIf="isControlInvalid('name')">
+          Please enter your name
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td>
+        <input type="email" size="30" formControlName="email">
+        <div *ngIf="isControlInvalid('email')">
+          Please enter a valid email
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Age:</td>
+      <td>
+        <input type="number" min="18" formControlName="age">
+        <div *ngIf="isControlInvalid('age')">
+          You have to be above 18
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Attending:</td>
+      <td>
+        <select formControlName="attendance">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <div *ngIf="isControlInvalid('attendance')">
+          Will you be attending?
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button type="submit" [disabled]="regForm.invalid">
+          RSVP ({{ regForm.invalid }})
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td>Pristine</td>
+      <td>{{ regForm.pristine }}</td>
+    </tr>
+    <tr>
+      <td>Dirty</td>
+      <td>{{ regForm.dirty }}</td>
+    </tr>
+  </table>
+
+</form>

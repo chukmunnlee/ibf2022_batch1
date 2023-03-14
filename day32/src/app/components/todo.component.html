@@ -1,0 +1,61 @@
+
+<form [formGroup]="todoForm" (ngSubmit)="saveTodo()">
+
+  <table>
+    <tr>
+      <td>Title:</td>
+      <td>
+        <input type="text" size="30" formControlName="taskName">
+      </td>
+    <tr>
+      <td>Name:</td>
+      <td>
+        <input type="text" size="30" formControlName="name">
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <div class="apart">
+          <button type="submit" [disabled]="isFormInvalid()">
+            Save
+          </button>
+          <button type="button" (click)="addTask()">Add Task</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div *ngIf="taskArray.controls.length <= 0">
+    <h2>You are free</h2>
+  </div>
+
+  <div *ngIf="taskArray.controls.length > 0">
+    <h2>My Tasks</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Due Date</th>
+        </tr>
+      </thead>
+      <tbody formArrayName="tasks">
+        <!--
+        <tr *ngFor="let t of taskArray.controls; let fg = index;" [formGroupName]="fg">
+        -->
+        <tr *ngFor="let t of taskArray.controls; let fg = index" [formGroup]="t">
+          <td>
+            <input type="text" size="40" formControlName="description">
+          </td>
+          <td>
+            <input type="date" formControlName="dueDate">
+          </td>
+            <td>
+              <button (click)="deleteTask(fg)">X</button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</form>
