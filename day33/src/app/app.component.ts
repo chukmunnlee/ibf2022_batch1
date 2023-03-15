@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Item } from './models';
 import { AddItemComponent } from './components/add-item.component'
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,38 +10,30 @@ import { AddItemComponent } from './components/add-item.component'
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
-  @ViewChild(AddItemComponent)
-  addItemComp!: AddItemComponent
+  form!: FormGroup
+  items!: FormArray
 
-  @ViewChild('modifyButton')
-  modifyBtnRef!: ElementRef
-
-  items: Item[] = []
-
-  selectedItem: Item | null = null
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    console.info('>>> addItemComp: ', this.addItemComp)
+    this.items = this.fb.array([])
+    this.form = this.fb.group({
+      items: this.items
+    })
+  }
+
+  addToCart() {
+    this.items.push(this.createItem())
+  }
+
+  createItem() {
+    return this.fb.group({
+      item: this.fb.control<string>(''),
+      quantity: this.fb.control<number>(1)
+    })
   }
 
   ngAfterViewInit(): void {
-    console.info('>>> after view init addItemComp: ', this.addItemComp)
-    console.info('>>> after view init addItemComp: ', this.modifyBtnRef)
-    this.modifyBtnRef.nativeElement.innerText = 'I have modified the button'
   }
 
-  newItem(item: Item) {
-    console.info('items: ', item)
-    this.items = [...this.items, item ]
-    //this.items.push(item)
-  }
-
-  itemSelected(idx: number) {
-    this.selectedItem = this.items[idx]
-  }
-
-  modifyItem() {
-    console.info('>>> modify item clicked', this.addItemComp.value)
-    this.newItem(this.addItemComp.value)
-  }
 }

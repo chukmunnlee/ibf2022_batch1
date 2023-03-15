@@ -1,3 +1,24 @@
+<app-user-info>
+
+  <form [formGroup]="form">
+    <div>
+      <button type="submit">Create Order</button>
+      <button type="button" (click)="addToCart()">Add Item</button>
+    </div>
+    <table formArrayName="items">
+      <tr *ngFor="let i of items.controls; let idx = index" [formGroupName]="idx">
+        <td>
+          <input type="text" formControlName="item">
+        </td>
+        <td>
+          <input type="number" formControlName="quantity">
+        </td>
+      </tr>
+    </table>
+  </form>
+
+</app-user-info>
+<!--
 <table>
   <tr>
     <td width="50%">
@@ -13,3 +34,4 @@
     </td>
   </tr>
 </table>
+-->

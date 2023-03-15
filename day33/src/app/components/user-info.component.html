@@ -1,1 +1,18 @@
-<p>user-info works!</p>
+<div class="border">
+  <h2>User Info</h2>
+
+  <form [formGroup]="form">
+    <table>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" size="30" formControlName="name"></td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><input type="text" size="30" formControlName="address"></td>
+      </tr>
+    </table>
+  </form>
+
+  <ng-content></ng-content>
+</div>
