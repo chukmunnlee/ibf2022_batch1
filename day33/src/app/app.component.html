@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <td width="50%">
+      <app-add-item (onNewItem)="newItem($event)" [item]="selectedItem" >
+        <div>
+          <button type="submit">Add</button>
+          <button type="button" (click)="modifyItem()" #modifyButton>Modify</button>
+        </div>
+      </app-add-item>
+    </td>
+    <td>
+      <app-list-items [items]="items" (onSelection)="itemSelected($event)"></app-list-items>
+    </td>
+  </tr>
+</table>

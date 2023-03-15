@@ -1,0 +1,30 @@
+<h2>Add Item</h2>
+
+<form [formGroup]="form" (ngSubmit)="processForm()">
+  <table>
+    <tr>
+      <td>Item:</td>
+      <td>
+        <input type="text" size="30" formControlName="item">
+      </td>
+    </tr>
+    <tr>
+      <td>Quantity:</td>
+      <td>
+        <input type="number" size="30" formControlName="quantity">
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <ng-content></ng-content>
+        <!--
+        <button type="submit" [disabled]="form.invalid">
+          Add
+        </button>
+        -->
+      </td>
+    </tr>
+  </table>
+
+</form>
