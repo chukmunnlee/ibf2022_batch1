@@ -1,0 +1,12 @@
+
+<div class="container">
+	<app-task>
+		<div class="d-flex justify-content-end">
+			<button type="button" class="btn btn-primary"
+					(click)="addTodo()" [disabled]="invalid_ | async">
+				Add
+			</button>
+		</div>
+	</app-task>
+	<app-task-list></app-task-list>
+</div>

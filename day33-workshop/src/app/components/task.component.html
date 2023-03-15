@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col"> <code class="fs-1">Todo</code> </div>
+	<form [formGroup]="form">
+		<div class="mb-3">
+			<label for="description">Description</label>
+			<input type="text" id="description" class="form-control"
+					formControlName="description">
+		</div>
+		<div class="mb-3">
+			<label>Priority</label>
+			<div class="d-flex">
+				<div class="form-check me-3">
+					<input type="radio" name="priority" id="low" class="form-check-input" 
+							value="low" formControlName="priority">
+					<label for="low" class="form-check-label">Low</label>
+				</div>
+				<div class="form-check me-3">
+					<input type="radio" name="priority" id="med" class="form-check-input" 
+							value="med" formControlName="priority">
+					<label id="med" class="form-check-label">Medium</label>
+				</div>
+				<div class="form-check me-3">
+					<input type="radio" name="priority" id="high" class="form-check-input" 
+							value="high" formControlName="priority">
+					<label id="high" class="form-check-label">High</label>
+				</div>
+			</div>
+		</div>
+		<div class="mb-3">
+			<label for="dueDate">Due</label>
+			<input type="datetime-local" id="dueDate" class="form-control"
+					formControlName="dueDate">
+		</div>
+		<div class="mb-3">
+			<ng-content></ng-content>
+		</div>
+	</form>
+</div>
