@@ -1,0 +1,29 @@
+
+<form [formGroup]="form">
+
+  <mat-form-field appearance="outline" class="fill-width">
+    <mat-label>Name</mat-label>
+    <input type="text" matInput formControlName="name">
+    <mat-hint *ngIf="form.get('name')?.invalid" align="end">
+      Please enter your name
+    </mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="fill-width">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="email">
+  </mat-form-field>
+
+  <div class="apart">
+    <button type="button" mat-raised-button color="warn">
+      Clear <mat-icon>cleaning_services</mat-icon>
+    </button>
+
+    <button type="submit" mat-raised-button color="primary"
+        [disabled]="form.invalid">
+      Register <mat-icon>app_registration</mat-icon>
+    </button>
+
+  </div>
+
+</form>
