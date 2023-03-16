@@ -1,0 +1,8 @@
+
+<h2>News Article</h2>
+
+<div *ngFor="let a of articles$ | async">
+  <code>
+    {{ a | json }}
+  </code>
+</div>

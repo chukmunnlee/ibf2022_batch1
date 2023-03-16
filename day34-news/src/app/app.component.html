@@ -1,0 +1,24 @@
+<h1>News</h1>
+
+<app-news-criteria></app-news-criteria>
+
+<table>
+
+  <tr>
+    <td>
+      <app-article></app-article>
+    </td>
+    <td>
+
+      <ul>
+        <li *ngFor="let a of articles">
+          {{ a.title }}
+        </li>
+      </ul>
+
+    </td>
+  </tr>
+
+</table>
+
+

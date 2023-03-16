@@ -1,0 +1,38 @@
+<h2>News Criteria</h2>
+
+<form [formGroup]="form" (ngSubmit)="performSearch()">
+	<table>
+		<tr>
+			<td> Country: </td>
+			<td>
+				<select formControlName="code"
+						(change)="onCountryChange($event)">
+					<option *ngFor="let c of countries" [value]="c.code">
+						{{ c.name }}
+					</option>
+				</select>
+			</td>
+			<td>
+				<img [src]="flag" width="40">
+			</td>
+		</tr>
+		<tr>
+			<td>Category:</td>
+			<td>
+				<select formControlName="category">
+					<option *ngFor="let c of categories" [value]="c">
+					{{ c | titlecase }}
+					</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<button type="submit" [disabled]="form.invalid">
+					Get News
+				</button>
+			</td>
+		</tr>
+	</table>
+</form>
