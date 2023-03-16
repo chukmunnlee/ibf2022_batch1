@@ -39,8 +39,12 @@ export class WeatherService {
     .then((data: any) => {
       // map() and tap()
       const w = data['weather'] as Weather[]
-      this.onWeather.next(w)
+      //this.onWeather.next(w)
       return w
+    })
+    .then(data => {
+      this.onWeather.next(data)
+      return data
     })
   }
 
