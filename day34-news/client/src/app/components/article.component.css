@@ -1,0 +1,9 @@
+.article {
+
+  width: 50wv;
+  height: auto;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+}

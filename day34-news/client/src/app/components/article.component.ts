@@ -14,15 +14,27 @@ export class ArticleComponent implements OnInit {
   @Input()
   articles: Article[] = []
 
+  canShare = false
+
   constructor(private newsSvc: NewsService) { }
 
   ngOnInit(): void {
+
+    this.canShare = this.newsSvc.canShare()
 
     this.newsSvc.onNewArticles.subscribe(
       p => {
         this.articles$ = p
       }
     )
+  }
+
+  share(text: string) {
+
+    if (this.newsSvc.canShare())
+      this.newsSvc.share(text)
+        .then(() => { alert('shared' )})
+        .catch(error => { alert(`ERROR: ${JSON.stringify(error)}`)})
 
   }
 

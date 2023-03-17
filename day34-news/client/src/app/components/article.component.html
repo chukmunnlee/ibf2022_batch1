@@ -1,8 +1,14 @@
 
-<h2>News Article</h2>
+<h2 *ngIf="articles$ | async; else noNews">News Article</h2>
 
-<div *ngFor="let a of articles$ | async">
-  <code>
-    {{ a | json }}
-  </code>
+<div *ngFor="let a of articles$ | async" class="article" (click)="share(a.title)">
+  <h2>
+    {{ a.title }}
+  </h2>
+  <p>{{ a.description }}</p>
+  <p>Share: {{ canShare }}</p>
 </div>
+
+<ng-template #noNews>
+  <h2>What are you curious about today?</h2>
+</ng-template>

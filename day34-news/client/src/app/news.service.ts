@@ -1,10 +1,8 @@
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {firstValueFrom, map, Subject} from "rxjs";
+import {firstValueFrom, map, Subject, tap} from "rxjs";
 import {COUNTRY_API, COUNTRY_CODES, NEWS_API} from "./constants";
 import {Article, Country, GetNewsCommand, SearchCriteria} from "./models";
-
-const API_KEY = "__YOUR_NEWS_API_KEY_HERE__"
 
 @Injectable()
 export class NewsService {
@@ -20,32 +18,32 @@ export class NewsService {
         this.getNews(command.criteria)
       )
     })
+  }
 
+  canShare(): boolean {
+    return !!navigator['share']
+  }
+
+  share(text: string) {
+    return navigator.share({
+      title: "News New",
+      text: text
+    })
   }
 
   getNews(criteria: SearchCriteria): Promise<Article[]> {
     console.info('>> criteria: ', criteria)
+    const code = criteria.code
+    const category = criteria.category
     const params = new HttpParams()
-        .set('country', criteria.code)
-        .set('category', criteria.category)
+        //.set('country', code)
+        //.set('category', category)
         .set('pageSize', 10)
-        .set('apiKey', API_KEY)
     return firstValueFrom(
-      this.http.get<Article[]>(NEWS_API, { params })
-        .pipe(
-          map((data: any) => data.articles as any[]),
-          map((data: any[]) => {
-            return data.map(a => {
-              return {
-                author: a.author,
-                title: a.title,
-                description: a.description,
-              } as Article
-            })
-          })
-        )
+      this.http.get<Article[]>(`${NEWS_API}/${code}/${category}`, { params })
     ).then(result => {
       console.info('>>> result: ', result)
+      this.onNewArticles.next(Promise.resolve(result))
       return result
     })
   }
