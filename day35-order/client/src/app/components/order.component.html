@@ -1,0 +1,56 @@
+
+<form [formGroup]="form" (ngSubmit)="placeOrder()">
+	<table>
+		<tr>
+			<td>Name: </td>
+			<td>
+				<input type="text" size="30" formControlName="name">
+			</td>
+		</tr>
+		<tr>
+			<td>Email: </td>
+			<td>
+				<input type="email" size="30" formControlName="email">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<button type="submit" [disabled]="formInvalid()">
+					Place Order
+				</button>
+				<button type="button" (click)="addLineItem()">
+					Add Item
+				</button>
+			</td>
+		</tr>
+	</table>
+
+	<div *ngIf="lineItems.controls.length > 0; else cartEmpty">
+		<table>
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody formArrayName="lineItems">
+				<tr *ngFor="let l of lineItems.controls; let i = index;" [formGroupName]="i">
+					<td>
+						<input type="text" size="30" formControlName="item">
+					</td>
+					<td>
+						<input type="number" min="1" formControlName="quantity">
+					</td>
+					<td>
+						<button type="submit" (click)="removeLineItem(i)">X</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<ng-template #cartEmpty>
+		<h2>Your cart is empty</h2>
+	</ng-template>
+</form>
