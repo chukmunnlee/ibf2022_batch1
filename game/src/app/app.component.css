@@ -1,0 +1,12 @@
+.center-it {
+	width: 100vw;;
+	height: 100vh;;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#game {
+	width: 500;
+	height: 500;
+}
